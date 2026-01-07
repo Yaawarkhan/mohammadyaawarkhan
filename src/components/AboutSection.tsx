@@ -54,10 +54,10 @@ const AboutSection = () => {
       }
     );
 
-    // Image entrance from left
+    // Image entrance from right
     gsap.fromTo(
       image,
-      { opacity: 0, x: -100, rotate: -10 },
+      { opacity: 0, x: 100, rotate: 10 },
       {
         opacity: 1,
         x: 0,
@@ -117,22 +117,17 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative pt-20 pb-32 overflow-hidden">
+    <section ref={sectionRef} id="about" className="relative py-32 overflow-hidden">
       {/* Background orbs */}
       <div className="glow-orb w-[500px] h-[500px] top-0 right-0 opacity-10" />
 
       <div className="container mx-auto px-6">
-        {/* Section heading */}
-        <div className="text-center mb-20">
-          <span className="text-primary text-sm uppercase tracking-[0.3em] mb-4 block">
-            About Me
-          </span>
-          <h2 className="section-heading">Who I Am</h2>
-        </div>
-
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content - Now on the left */}
+          {/* Content - Left side */}
           <div ref={contentRef} className="order-2 lg:order-1">
+            <span className="text-primary text-sm uppercase tracking-[0.3em] mb-4 block">
+              About Me
+            </span>
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
               <span className="text-primary">HI!!</span> I'm Mohammad Yaawar Khan
             </h3>
@@ -163,14 +158,14 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Profile Image - Now on the right */}
+          {/* Profile Image - Right side */}
           <div ref={imageRef} className="flex justify-center lg:justify-end order-1 lg:order-2">
             <div className="profile-glow">
-              <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-2 border-border/50">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-border/50">
                 <img
                   src={profileImage}
                   alt="Mohammad Yaawar Khan"
-                  className="w-full h-full object-cover object-center scale-90 grayscale hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>
             </div>
@@ -178,7 +173,6 @@ const AboutSection = () => {
         </div>
       </div>
     </section>
-
   );
 };
 
