@@ -71,7 +71,7 @@ const Navbar = () => {
             onClick={() => handleLinkClick('#contact')}
             className="hidden md:block btn-outline-neon"
           >
-            Hire Me
+            Contact Me
           </button>
 
           {/* Mobile Menu Toggle */}
