@@ -132,10 +132,10 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right - Spline 3D */}
+          {/* Right - Profile Image */}
           <div
             ref={splineRef}
-            className="order-1 lg:order-2 relative h-[400px] md:h-[500px] lg:h-[600px] w-full"
+            className="order-1 lg:order-2 relative flex items-center justify-center"
           >
             {/* Background name text */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
@@ -143,18 +143,13 @@ const HeroSection = () => {
                 Mohammad<br/>Yaawar<br/>Khan
               </h2>
             </div>
-            {/* Spline iframe with watermark covered */}
-            <div className="relative z-10 w-full h-full">
-              <iframe
-                src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
-                frameBorder="0"
-                width="100%"
-                height="100%"
-                className="rounded-2xl pointer-events-auto"
-                title="3D Robot Character"
+            {/* Profile Image */}
+            <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20">
+              <img 
+                src={profileImage} 
+                alt="Mohammad Yaawar Khan" 
+                className="w-full h-full object-cover object-center"
               />
-              {/* Solid cover for Spline watermark */}
-              <div className="absolute bottom-0 left-0 right-0 h-14 bg-background pointer-events-none" />
             </div>
           </div>
         </div>
