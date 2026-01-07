@@ -134,14 +134,23 @@ const HeroSection = () => {
             ref={splineRef}
             className="order-1 lg:order-2 relative h-[400px] md:h-[500px] lg:h-[600px] w-full"
           >
-            <iframe
-              src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
-              frameBorder="0"
-              width="100%"
-              height="100%"
-              className="rounded-2xl"
-              title="3D Robot Character"
-            />
+            {/* Background name text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+              <h2 className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-black text-foreground/[0.03] uppercase tracking-tighter leading-none text-center select-none whitespace-nowrap">
+                Mohammad<br/>Yaawar<br/>Khan
+              </h2>
+            </div>
+            {/* Spline iframe with watermark hidden */}
+            <div className="relative z-10 w-full h-[calc(100%+60px)] overflow-hidden rounded-2xl -mb-[60px]">
+              <iframe
+                src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
+                frameBorder="0"
+                width="100%"
+                height="100%"
+                className="rounded-2xl pointer-events-auto"
+                title="3D Robot Character"
+              />
+            </div>
           </div>
         </div>
       </div>
