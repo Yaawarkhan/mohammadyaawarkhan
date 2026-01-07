@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import profileImage from '@/assets/profile.png';
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -7,6 +8,8 @@ const HeroSection = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const splineRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 2.8 });
@@ -84,15 +87,12 @@ const HeroSection = () => {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden pb-0"
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* Background gradient orbs */}
       <div className="hero-orb-1 glow-orb w-[600px] h-[600px] -top-64 -left-64" />
       <div className="hero-orb-2 glow-orb w-[400px] h-[400px] top-1/2 left-1/4 opacity-20" />
       <div className="hero-orb-3 glow-orb w-[300px] h-[300px] bottom-32 right-1/4 opacity-30" />
-      
-      {/* Bottom fade for smooth transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent z-20 pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-32">
@@ -153,18 +153,21 @@ const HeroSection = () => {
                 className="rounded-2xl pointer-events-auto"
                 title="3D Robot Character"
               />
-              {/* Cover for Spline watermark */}
-              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background via-background to-transparent pointer-events-none" />
+              {/* Solid cover for Spline watermark */}
+              <div className="absolute bottom-0 left-0 right-0 h-14 bg-background pointer-events-none" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-30">
         <span className="text-muted-foreground text-xs uppercase tracking-widest">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
       </div>
+
+      {/* Bottom fade for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-20 pointer-events-none" />
     </section>
   );
 };
