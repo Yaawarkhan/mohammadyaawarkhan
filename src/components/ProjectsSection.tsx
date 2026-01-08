@@ -1,61 +1,11 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'phosphor-react';
-
-import project1 from '@/assets/project-1.png';
-import project2 from '@/assets/project-2.png';
-import project3 from '@/assets/project-3.png';
-import project4 from '@/assets/project-4.png';
-import project5 from '@/assets/project-5.png';
-import project6 from '@/assets/project-6.png';
+import { projectsData } from '@/pages/ProjectDetail';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const projects = [
-  {
-    id: 1,
-    image: project1,
-    title: '3D Interactive Web',
-    description: 'Email platform for developers with 3D elements',
-    tech: ['React', 'Spline', 'Tailwind'],
-  },
-  {
-    id: 2,
-    image: project2,
-    title: '3D Web Design',
-    description: 'Next-level gaming UI with advanced animations',
-    tech: ['React', 'GSAP', 'Three.js'],
-  },
-  {
-    id: 3,
-    image: project3,
-    title: '3D Portfolio',
-    description: 'Creative developer portfolio with 3D integration',
-    tech: ['HTML', 'CSS', 'JavaScript'],
-  },
-  {
-    id: 4,
-    image: project4,
-    title: 'Gaming Website',
-    description: 'Dynamic gaming platform with stunning visuals',
-    tech: ['HTML5', 'CSS3', 'JS'],
-  },
-  {
-    id: 5,
-    image: project5,
-    title: 'Animation Tools',
-    description: 'Web animation showcase with Spline integration',
-    tech: ['React', 'Spline', 'Framer'],
-  },
-  {
-    id: 6,
-    image: project6,
-    title: 'Animated Portfolio',
-    description: 'Step by step animated portfolio tutorial',
-    tech: ['CSS', 'JS', 'GSAP'],
-  },
-];
 
 const ProjectsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -130,8 +80,12 @@ const ProjectsSection = () => {
           ref={cardsRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {projects.map((project) => (
-            <div key={project.id} className="project-card group">
+          {projectsData.map((project) => (
+            <Link
+              key={project.id}
+              to={`/project/${project.id}`}
+              className="project-card group cursor-pointer block"
+            >
               {/* Image */}
               <div className="relative aspect-video overflow-hidden">
                 <img
@@ -146,6 +100,11 @@ const ProjectsSection = () => {
                 <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                   <ArrowUpRight size={20} weight="bold" className="text-primary" />
                 </div>
+
+                {/* Category badge */}
+                <div className="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  {project.category}
+                </div>
               </div>
 
               {/* Content */}
@@ -159,7 +118,7 @@ const ProjectsSection = () => {
 
                 {/* Tech stack */}
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
+                  {project.tech.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
                       className="px-3 py-1 text-xs font-light tracking-wide rounded-full bg-secondary/50 text-muted-foreground border border-border/30"
@@ -167,9 +126,14 @@ const ProjectsSection = () => {
                       {tech}
                     </span>
                   ))}
+                  {project.tech.length > 3 && (
+                    <span className="px-3 py-1 text-xs font-light tracking-wide rounded-full bg-secondary/50 text-muted-foreground border border-border/30">
+                      +{project.tech.length - 3}
+                    </span>
+                  )}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
