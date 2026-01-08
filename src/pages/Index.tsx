@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import AcademicsSection from '@/components/AcademicsSection';
+import ExtracurricularsSection from '@/components/ExtracurricularsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
@@ -29,6 +31,8 @@ const Index = () => {
           <HeroSection />
           <AboutSection />
           <ProjectsSection />
+          <AcademicsSection />
+          <ExtracurricularsSection />
           <ContactSection />
         </main>
         <Footer />
