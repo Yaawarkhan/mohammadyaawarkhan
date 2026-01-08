@@ -129,7 +129,7 @@ const AboutSection = () => {
               About Me
             </span>
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              <span className="text-primary">HI!!</span> I'm Mohammad Yaawar Khan
+              Passionate Developer & <span className="text-primary">AI Enthusiast</span>
             </h3>
 
             <p className="text-muted-foreground font-light leading-relaxed mb-6">

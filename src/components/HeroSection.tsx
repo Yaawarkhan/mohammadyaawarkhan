@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import profileImage from '@/assets/profile.png';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -8,8 +10,7 @@ const HeroSection = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const splineRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const bgTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 2.8 });
@@ -44,6 +45,33 @@ const HeroSection = () => {
       { opacity: 1, x: 0, duration: 1, ease: 'power2.out' },
       '-=0.8'
     );
+
+    // Background text scroll animation
+    if (bgTextRef.current) {
+      gsap.fromTo(
+        bgTextRef.current,
+        { opacity: 0, scale: 0.8, filter: 'blur(10px)' },
+        {
+          opacity: 1,
+          scale: 1,
+          filter: 'blur(0px)',
+          duration: 1.5,
+          delay: 3,
+          ease: 'power2.out',
+        }
+      );
+
+      // Parallax scroll effect
+      gsap.to(bgTextRef.current, {
+        y: -100,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      });
+    }
 
     // Floating orbs animation
     gsap.to('.hero-orb-1', {
@@ -137,11 +165,19 @@ const HeroSection = () => {
             ref={splineRef}
             className="order-1 lg:order-2 relative h-[400px] md:h-[500px] lg:h-[600px] w-full"
           >
-            {/* Background name text */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-              <h2 className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-black text-foreground/[0.03] uppercase tracking-tighter leading-none text-center select-none whitespace-nowrap">
-                Mohammad<br/>Yaawar<br/>Khan
-              </h2>
+            {/* Background descriptors with glow effect */}
+            <div ref={bgTextRef} className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+              <div className="relative">
+                <h2 className="bg-text-glow text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-black uppercase tracking-tighter leading-tight text-center select-none whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-foreground/10 to-foreground/5 drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)]">
+                  AI Enthusiast<br/>Entrepreneur<br/>Student<br/>Founder<br/>Researcher
+                </h2>
+                {/* Glow layer behind text */}
+                <div className="absolute inset-0 blur-2xl opacity-20">
+                  <h2 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-black uppercase tracking-tighter leading-tight text-center select-none whitespace-nowrap text-primary">
+                    AI Enthusiast<br/>Entrepreneur<br/>Student<br/>Founder<br/>Researcher
+                  </h2>
+                </div>
+              </div>
             </div>
             {/* Spline iframe with watermark covered */}
             <div className="relative z-10 w-full h-full">
