@@ -160,8 +160,13 @@ const AboutSection = () => {
 
           {/* Profile Image - Right side */}
           <div ref={imageRef} className="flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="profile-glow">
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-border/50">
+            <div className="relative group">
+              {/* Glow effect behind frame */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/40 via-primary/20 to-transparent rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="absolute -inset-2 bg-gradient-to-tr from-primary/30 to-transparent rounded-2xl blur-xl opacity-40" />
+              
+              {/* Image frame */}
+              <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden border border-primary/20 shadow-[0_0_40px_hsl(var(--primary)/0.2)]">
                 <img
                   src={profileImage}
                   alt="Mohammad Yaawar Khan"
