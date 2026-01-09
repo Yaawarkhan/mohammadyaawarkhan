@@ -140,8 +140,7 @@ const HeroSection = () => {
               ref={subtitleRef}
               className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed max-w-lg mb-10"
             >
-              Student, AI Enthusiast, Entrepreneur — Building the future with 
-              cutting-edge technology and creative innovation.
+              High school student focused on research, technology, and expanding access to meaningful education.
             </p>
 
             <div ref={ctaRef} className="flex flex-wrap gap-4">
@@ -149,7 +148,7 @@ const HeroSection = () => {
                 onClick={() => handleScroll('#contact')}
                 className="btn-neon"
               >
-                Hire Me
+                Get in Touch
               </button>
               <button
                 onClick={() => handleScroll('#projects')}

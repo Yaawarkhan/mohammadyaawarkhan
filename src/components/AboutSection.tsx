@@ -112,7 +112,7 @@ const AboutSection = () => {
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      // Only kill ScrollTriggers created by this component
     };
   }, []);
 
