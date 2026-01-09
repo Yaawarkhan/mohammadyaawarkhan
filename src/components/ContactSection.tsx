@@ -15,47 +15,50 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   useEffect(() => {
-    const section = sectionRef.current;
-    const form = formRef.current;
-    const heading = headingRef.current;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      const form = formRef.current;
+      const heading = headingRef.current;
 
-    // Heading animation
-    gsap.fromTo(heading, {
-      opacity: 0,
-      y: 50
-    }, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
-      }
-    });
-
-    // Form elements stagger
-    if (form) {
-      gsap.fromTo(form.children, {
-        opacity: 0,
-        x: -30
-      }, {
-        opacity: 1,
-        x: 0,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: form,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
+      // Heading animation
+      gsap.fromTo(
+        heading,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
         }
-      });
-    }
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+      );
+
+      // Form elements stagger
+      if (form) {
+        gsap.fromTo(
+          form.children,
+          { opacity: 0, x: -30 },
+          {
+            opacity: 1,
+            x: 0,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: form,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -77,49 +77,49 @@ const AcademicsSection = () => {
   const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const heading = headingRef.current;
-    const cards = cardsRef.current;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      const heading = headingRef.current;
+      const cards = cardsRef.current;
 
-    gsap.fromTo(
-      heading,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
-
-    if (cards) {
       gsap.fromTo(
-        cards.children,
-        { opacity: 0, y: 40, scale: 0.95 },
+        heading,
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: 'power3.out',
+          duration: 1,
+          ease: 'power2.out',
           scrollTrigger: {
-            trigger: cards,
-            start: 'top 80%',
+            trigger: section,
+            start: 'top 70%',
             toggleActions: 'play none none reverse',
           },
         }
       );
-    }
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+      if (cards) {
+        gsap.fromTo(
+          cards.children,
+          { opacity: 0, y: 40, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: cards,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
