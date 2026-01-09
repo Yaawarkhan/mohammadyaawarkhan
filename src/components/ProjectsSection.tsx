@@ -13,51 +13,51 @@ const ProjectsSection = () => {
   const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const heading = headingRef.current;
-    const cards = cardsRef.current;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      const heading = headingRef.current;
+      const cards = cardsRef.current;
 
-    // Heading animation
-    gsap.fromTo(
-      heading,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
-
-    // Cards stagger animation
-    if (cards) {
+      // Heading animation
       gsap.fromTo(
-        cards.children,
-        { opacity: 0, y: 80, scale: 0.9 },
+        heading,
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          stagger: 0.15,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 1,
+          ease: 'power2.out',
           scrollTrigger: {
-            trigger: cards,
-            start: 'top 80%',
+            trigger: section,
+            start: 'top 70%',
             toggleActions: 'play none none reverse',
           },
         }
       );
-    }
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+      // Cards stagger animation
+      if (cards) {
+        gsap.fromTo(
+          cards.children,
+          { opacity: 0, y: 80, scale: 0.9 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.15,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: cards,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

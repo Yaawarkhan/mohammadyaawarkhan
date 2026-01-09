@@ -9,38 +9,38 @@ const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const footer = footerRef.current;
+    const ctx = gsap.context(() => {
+      const footer = footerRef.current;
 
-    gsap.fromTo(
-      footer,
-      { opacity: 0, y: 60, filter: 'blur(5px)' },
-      {
-        opacity: 1,
-        y: 0,
-        filter: 'blur(0px)',
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: footer,
-          start: 'top 95%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
+      gsap.fromTo(
+        footer,
+        { opacity: 0, y: 60, filter: 'blur(5px)' },
+        {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: footer,
+            start: 'top 95%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
 
-    // Floating particles in footer
-    gsap.to('.footer-particle', {
-      y: -30,
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut',
-      stagger: 0.5,
-    });
+      // Floating particles in footer
+      gsap.to('.footer-particle', {
+        y: -30,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+        stagger: 0.5,
+      });
+    }, footerRef);
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   const currentYear = new Date().getFullYear();
