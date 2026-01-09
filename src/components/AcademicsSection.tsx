@@ -90,6 +90,7 @@ const AcademicsSection = () => {
           y: 0,
           duration: 1,
           ease: 'power2.out',
+          immediateRender: false,
           scrollTrigger: {
             trigger: section,
             start: 'top 70%',
@@ -109,6 +110,7 @@ const AcademicsSection = () => {
             stagger: 0.1,
             duration: 0.6,
             ease: 'power3.out',
+            immediateRender: false,
             scrollTrigger: {
               trigger: cards,
               start: 'top 80%',
