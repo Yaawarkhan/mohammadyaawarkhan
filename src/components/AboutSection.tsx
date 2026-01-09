@@ -132,16 +132,8 @@ const AboutSection = () => {
               Passionate Developer & <span className="text-primary">AI Enthusiast</span>
             </h3>
 
-            <p className="text-muted-foreground font-light leading-relaxed mb-6">
-              Ever since I remember, I've always had a special interest in technology 
-              and innovation. From the most simple code to the most elaborate AI systems, 
-              I live to discover and experience creative ways to solve problems.
-            </p>
-
             <p className="text-muted-foreground font-light leading-relaxed mb-10">
-              As a passionate developer and AI enthusiast, I combine cutting-edge technology 
-              with creative design to build exceptional digital experiences. Currently focusing 
-              on full-stack development, machine learning, and entrepreneurship.
+              I'm a student driven by curiosity and a belief that learning should extend beyond classrooms. Whether through research, building technology, or teaching others, I focus on turning ideas into work that has real-world value. My experiences span independent research, hands-on AI projects, workshops, and running a tutoring initiative aimed at making education more accessible. Growing up in India has shaped my understanding of how impactful the right opportunities can be, and I'm deeply interested in using technology and education to create meaningful, scalable change.
             </p>
 
             {/* Skills Grid */}
