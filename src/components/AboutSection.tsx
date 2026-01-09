@@ -125,11 +125,8 @@ const AboutSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content - Left side */}
           <div ref={contentRef} className="order-2 lg:order-1">
-            <span className="text-primary text-sm uppercase tracking-[0.3em] mb-4 block">
-              About Me
-            </span>
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Passionate Developer & <span className="text-primary">AI Enthusiast</span>
+              About Me
             </h3>
 
             <p className="text-muted-foreground font-light leading-relaxed mb-10">
