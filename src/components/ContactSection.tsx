@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { GithubLogo, LinkedinLogo, EnvelopeSimple, PaperPlaneTilt } from 'phosphor-react';
+import { GithubLogo, LinkedinLogo, EnvelopeSimple, PaperPlaneTilt, InstagramLogo } from 'phosphor-react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
+
 gsap.registerPlugin(ScrollTrigger);
+
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -14,13 +17,13 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       const section = sectionRef.current;
       const form = formRef.current;
       const heading = headingRef.current;
 
-      // Heading animation
       gsap.fromTo(
         heading,
         { opacity: 0, y: 50 },
@@ -37,7 +40,6 @@ const ContactSection = () => {
         }
       );
 
-      // Form elements stagger
       if (form) {
         gsap.fromTo(
           form.children,
@@ -60,11 +62,11 @@ const ContactSection = () => {
 
     return () => ctx.revert();
   }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Animate submit button
     gsap.to('.submit-btn', {
       scale: 0.95,
       duration: 0.1,
@@ -72,15 +74,24 @@ const ContactSection = () => {
       repeat: 1
     });
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    toast.success('Message sent successfully!');
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
-    setIsSubmitting(false);
+    try {
+      await emailjs.send(
+        'service_gf3vl7o',
+        'template_y9gzmue',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        'WUT3ff-c5j-YAeugy'
+      );
+      toast.success('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return <section ref={sectionRef} id="contact" className="relative py-32 overflow-hidden">
       {/* Background orbs */}
@@ -140,6 +151,9 @@ const ContactSection = () => {
                 </a>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-secondary/50 border border-border/30 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all duration-300">
                   <LinkedinLogo size={22} weight="light" />
+                </a>
+                <a href="https://instagram.com/yaawar_khan" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-secondary/50 border border-border/30 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all duration-300">
+                  <InstagramLogo size={22} weight="light" />
                 </a>
               </div>
             </div>
