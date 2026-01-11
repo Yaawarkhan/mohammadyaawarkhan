@@ -4,15 +4,18 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import project1 from '@/assets/project-1.png';
-import project2 from '@/assets/project-2.png';
-import project3 from '@/assets/project-3.png';
-import project4 from '@/assets/project-4.png';
-import project5 from '@/assets/project-5.png';
-import project6 from '@/assets/project-6.png';
 import aicademia1 from '@/assets/aicademia-1.jpeg';
 import aicademia2 from '@/assets/aicademia-2.jpeg';
 import aicademia3 from '@/assets/aicademia-3.jpeg';
+import thinkai1 from '@/assets/thinkai-1.jpeg';
+import thinkai2 from '@/assets/thinkai-2.jpeg';
+import thinkai3 from '@/assets/thinkai-3.jpeg';
+import tutoring1 from '@/assets/tutoring-1.jpeg';
+import tutoring2 from '@/assets/tutoring-2.jpeg';
+import tutoring3 from '@/assets/tutoring-3.png';
+import paperSocial from '@/assets/paper-social.png';
+import paperRetail from '@/assets/paper-retail.png';
+import paperKmeans from '@/assets/paper-kmeans.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,8 +54,8 @@ export const projectsData: ProjectData[] = [
   },
   {
     id: 'ai-workshop',
-    image: project2,
-    title: 'AI Workshop For Students',
+    image: thinkai1,
+    title: 'ThinkAI by Polaris',
     subtitle: 'Making AI Accessible to Young Minds',
     description: 'Interactive workshops introducing AI concepts to school students',
     fullDescription: [
@@ -63,11 +66,12 @@ export const projectsData: ProjectData[] = [
       "This project taught us networking, public speaking, hosting, entrepreneurship, sales, marketing, leadership, teaching, content creation, and most importantly, how to connect with people through a shared curiosity for technology."
     ],
     tech: ['Public Speaking', 'Education', 'AI', 'Workshop Design'],
-    category: 'Initiative'
+    category: 'Initiative',
+    gallery: [thinkai1, thinkai2, thinkai3]
   },
   {
     id: 'tutoring-business',
-    image: project3,
+    image: tutoring1,
     title: 'Tutoring Business',
     subtitle: 'Connecting Students with Quality Educators',
     description: 'Platform connecting students with knowledgeable, compassionate teachers',
@@ -81,11 +85,12 @@ export const projectsData: ProjectData[] = [
     tech: ['Business Development', 'Education', 'Mentoring', 'Marketing'],
     category: 'Startup',
     link: 'https://www.instagram.com/tutor_edge_',
-    linkText: 'Visit Instagram Page'
+    linkText: 'Visit Instagram Page',
+    gallery: [tutoring1, tutoring2, tutoring3]
   },
   {
     id: 'social-media-research',
-    image: project4,
+    image: paperSocial,
     title: 'Social Media Research',
     subtitle: 'Gen Z Usage Patterns Study',
     description: 'Published research on social media usage among Indian Generation Z users',
@@ -103,7 +108,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     id: 'retail-research',
-    image: project5,
+    image: paperRetail,
     title: 'Retail Space Management Research',
     subtitle: 'Evolution of Organized Grocery Retail',
     description: 'Research conducted with Aligarh Muslim University on retail space optimization',
@@ -121,7 +126,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     id: 'kmeans-research',
-    image: project6,
+    image: paperKmeans,
     title: 'K-Means Cluster Analysis',
     subtitle: 'Gen Z Social Media User Segmentation',
     description: 'Advanced statistical analysis of Generation Z social media behavior patterns',

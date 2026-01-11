@@ -8,9 +8,7 @@ import {
   FileCss, 
   FileJs, 
   Atom, 
-  Lightning,
-  Brain,
-  Palette
+  Brain
 } from 'phosphor-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,10 +18,10 @@ const skills = [
   { icon: FileCss, name: 'CSS3' },
   { icon: FileJs, name: 'JavaScript' },
   { icon: Atom, name: 'React' },
-  { icon: Lightning, name: 'GSAP' },
+  { icon: Code, name: 'MySQL' },
   { icon: Brain, name: 'AI/ML' },
   { icon: Code, name: 'TypeScript' },
-  { icon: Palette, name: 'UI/UX' },
+  { icon: Code, name: 'Python' },
 ];
 
 const AboutSection = () => {
