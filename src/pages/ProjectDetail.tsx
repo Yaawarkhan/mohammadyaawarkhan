@@ -10,6 +10,9 @@ import project3 from '@/assets/project-3.png';
 import project4 from '@/assets/project-4.png';
 import project5 from '@/assets/project-5.png';
 import project6 from '@/assets/project-6.png';
+import aicademia1 from '@/assets/aicademia-1.jpeg';
+import aicademia2 from '@/assets/aicademia-2.jpeg';
+import aicademia3 from '@/assets/aicademia-3.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +33,7 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     id: 'aicademia',
-    image: project1,
+    image: aicademia1,
     title: 'Aicademia',
     subtitle: 'The All-in-One EdTech App',
     description: 'AI-powered study platform providing students with a focused learning ecosystem',
@@ -43,7 +46,8 @@ export const projectsData: ProjectData[] = [
     tech: ['React', 'AI/ML', 'TypeScript', 'Tailwind CSS'],
     category: 'Startup',
     link: 'https://aicademia.lovable.app/',
-    linkText: 'Visit Aicademia'
+    linkText: 'Visit Aicademia',
+    gallery: [aicademia1, aicademia2, aicademia3]
   },
   {
     id: 'ai-workshop',
@@ -206,17 +210,32 @@ const ProjectDetail = () => {
             {project.subtitle}
           </p>
 
-          {/* Hero Image */}
-          <div className="relative rounded-2xl overflow-hidden mb-12 group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-[400px] md:h-[500px] object-cover"
-            />
-            {/* Glow behind */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/10 blur-3xl -z-10" />
-          </div>
+          {/* Hero Image(s) */}
+          {project.gallery && project.gallery.length > 1 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+              {project.gallery.map((img, index) => (
+                <div key={index} className="relative rounded-2xl overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                  <img
+                    src={img}
+                    alt={`${project.title} - ${index + 1}`}
+                    className="w-full h-[300px] md:h-[400px] object-cover object-top"
+                  />
+                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/10 blur-3xl -z-10" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="relative rounded-2xl overflow-hidden mb-12 group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-[400px] md:h-[500px] object-cover"
+              />
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/10 blur-3xl -z-10" />
+            </div>
+          )}
 
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-3 mb-12">

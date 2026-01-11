@@ -14,6 +14,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,12 +82,13 @@ const ContactSection = () => {
         {
           from_name: formData.name,
           from_email: formData.email,
+          subject: formData.subject,
           message: formData.message,
         },
         'WUT3ff-c5j-YAeugy'
       );
       toast.success('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       toast.error('Failed to send message. Please try again.');
     } finally {
@@ -174,6 +176,13 @@ const ContactSection = () => {
                 <input type="email" placeholder="Your Email" value={formData.email} onChange={e => setFormData({
                 ...formData,
                 email: e.target.value
+              })} required className="glass-input" />
+              </div>
+
+              <div>
+                <input type="text" placeholder="Subject" value={formData.subject} onChange={e => setFormData({
+                ...formData,
+                subject: e.target.value
               })} required className="glass-input" />
               </div>
 
