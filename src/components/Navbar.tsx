@@ -4,10 +4,10 @@ import gsap from 'gsap';
 
 const navLinks = [
   { name: 'Home', href: '#hero' },
-  { name: 'Academics', href: '#academics' },
-  { name: 'Extracurriculars', href: '#extracurriculars' },
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Academics', href: '#academics' },
+  { name: 'Extracurriculars', href: '#extracurriculars' },
   { name: 'Contact', href: '#contact' },
 ];
 
