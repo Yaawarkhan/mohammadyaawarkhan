@@ -13,7 +13,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Custom Python icon component
+// Custom Python icon component (snake-like)
 const PythonIcon = ({ size = 28, className = '' }: { size?: number; className?: string }) => (
   <svg 
     width={size} 
@@ -22,7 +22,20 @@ const PythonIcon = ({ size = 28, className = '' }: { size?: number; className?: 
     className={className}
     fill="currentColor"
   >
-    <path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-82.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32l-24-24a8,8,0,0,1,0-11.32l24-24a8,8,0,0,1,11.32,11.32Zm-37.32-24a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L103.37,152,85.02,133.66a8,8,0,0,1,11.32-11.32Z"/>
+    <path d="M216,80a8,8,0,0,1-8,8H173.93a8,8,0,0,0-7.79,6.22L152.35,152H176a8,8,0,0,1,0,16H147.76l-9.5,47.52a8,8,0,0,1-7.83,6.48H120a8,8,0,0,1-7.83-9.52L120.51,168H88a8,8,0,0,1,0-16h36.93a8,8,0,0,0,7.79-6.22L146.51,88H120a8,8,0,0,1,0-16h31.76l9.5-47.52A8,8,0,0,1,169.09,18H180a8,8,0,0,1,7.83,9.52L179.49,72H208A8,8,0,0,1,216,80ZM56,72a40,40,0,1,0,40,40A40,40,0,0,0,56,72Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,56,136Zm144,48a40,40,0,1,0,40,40A40,40,0,0,0,200,184Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,200,248Z"/>
+  </svg>
+);
+
+// Custom TypeScript icon component
+const TypeScriptIcon = ({ size = 28, className = '' }: { size?: number; className?: string }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 256 256" 
+    className={className}
+    fill="currentColor"
+  >
+    <path d="M48,36H208a12,12,0,0,1,12,12V208a12,12,0,0,1-12,12H48a12,12,0,0,1-12-12V48A12,12,0,0,1,48,36Zm160,168V52H52V204H204ZM128,100H72v16h20v68h16V116h20Zm72,36a20,20,0,0,0-20-20H156v16h20v8H156a20,20,0,0,0-20,20v12a20,20,0,0,0,20,20h28V136Zm-16,36H156v-8h28Z"/>
   </svg>
 );
 
@@ -33,7 +46,7 @@ const skills = [
   { icon: Atom, name: 'React' },
   { icon: Database, name: 'MySQL' },
   { icon: Brain, name: 'AI/ML' },
-  { icon: FileJs, name: 'TypeScript' },
+  { icon: TypeScriptIcon, name: 'TypeScript', isCustom: true },
   { icon: PythonIcon, name: 'Python', isCustom: true },
 ];
 

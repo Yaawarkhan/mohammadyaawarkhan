@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
@@ -18,54 +19,63 @@ gsap.registerPlugin(ScrollTrigger);
 
 const extracurriculars = [
   {
+    id: 'deputy-headboy',
     icon: Users,
     title: 'Deputy Headboy',
     description: 'Led initiatives to improve leadership, engagement, and student participation.',
     color: 'text-purple-400',
   },
   {
+    id: 'public-speaking',
     icon: Mic,
     title: 'Public Speaking & Workshop',
     description: 'Polished persuasive and oratory skills via inter-school events and AI workshop passion project.',
     color: 'text-yellow-400',
   },
   {
+    id: 'soccer-captain',
     icon: Trophy,
     title: 'Soccer Captain',
     description: "Led the school's football team during my Sophomore year in high school.",
     color: 'text-green-400',
   },
   {
+    id: 'research-publication',
     icon: FileText,
     title: 'Research Publication',
     description: 'Published Three research papers, one about retail and two about Social media and Gen Z.',
     color: 'text-blue-400',
   },
   {
+    id: 'student-mentor',
     icon: GraduationCap,
     title: 'Student Mentor & Tutor',
     description: 'Helped students excel in their academics by teaching with different methods of studying.',
     color: 'text-orange-400',
   },
   {
+    id: 'community-involvement',
     icon: Heart,
     title: 'Community Involvement',
     description: 'Volunteered and led several NGO supported food drives and education drives for children.',
     color: 'text-pink-400',
   },
   {
+    id: 'solo-app-developer',
     icon: Sparkles,
     title: 'Solo App Developer',
     description: 'Currently building an AI powered tutoring app to help students with their academics.',
     color: 'text-cyan-400',
   },
   {
+    id: 'startup-enthusiast',
     icon: Rocket,
     title: 'Startup Enthusiast',
     description: 'Launched projects with a focus on innovation & problem solving while also focusing on teamwork.',
     color: 'text-emerald-400',
   },
   {
+    id: 'robotics-workshops',
     icon: Cog,
     title: 'Robotics Workshops',
     description: 'Attended several robotics workshops gaining theoretical knowledge and hands-on experience by building robots.',
@@ -74,6 +84,7 @@ const extracurriculars = [
 ];
 
 const ExtracurricularsSection = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -124,6 +135,10 @@ const ExtracurricularsSection = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleCardClick = (id: string) => {
+    navigate(`/extracurricular/${id}`);
+  };
+
   return (
     <section ref={sectionRef} id="extracurriculars" className="relative py-32 overflow-hidden">
       {/* Background orbs */}
@@ -143,12 +158,13 @@ const ExtracurricularsSection = () => {
           ref={cardsRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
         >
-          {extracurriculars.map((item, index) => {
+          {extracurriculars.map((item) => {
             const Icon = item.icon;
             return (
-              <div
-                key={index}
-                className="group relative p-6 rounded-2xl bg-card/50 border border-border/30 backdrop-blur-sm hover:border-primary/30 hover:bg-card/80 transition-all duration-300"
+              <button
+                key={item.id}
+                onClick={() => handleCardClick(item.id)}
+                className="group relative p-6 rounded-2xl bg-card/50 border border-border/30 backdrop-blur-sm hover:border-primary/30 hover:bg-card/80 transition-all duration-300 text-left cursor-pointer"
               >
                 {/* Glow effect on hover */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -162,7 +178,7 @@ const ExtracurricularsSection = () => {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>

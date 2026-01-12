@@ -8,7 +8,6 @@ const navLinks = [
   { name: 'Projects', href: '#projects' },
   { name: 'Academics', href: '#academics' },
   { name: 'Extracurriculars', href: '#extracurriculars' },
-  { name: 'Contact', href: '#contact' },
 ];
 
 const Navbar = () => {
