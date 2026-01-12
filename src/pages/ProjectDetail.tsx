@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'phosphor-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
@@ -146,8 +146,14 @@ export const projectsData: ProjectData[] = [
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
+  const navigate = useNavigate();
   const project = projectsData.find((p) => p.id === projectId);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to top when project page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [projectId]);
 
   useEffect(() => {
     if (contentRef.current) {
@@ -165,14 +171,18 @@ const ProjectDetail = () => {
     }
   }, [projectId]);
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   if (!project) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">Project Not Found</h1>
-          <Link to="/" className="text-primary hover:underline">
+          <button onClick={handleGoBack} className="text-primary hover:underline">
             ← Back to Home
-          </Link>
+          </button>
         </div>
       </div>
     );
@@ -187,13 +197,13 @@ const ProjectDetail = () => {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="container mx-auto px-6 py-5">
-          <Link
-            to="/"
+          <button
+            onClick={handleGoBack}
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeft size={20} />
-            <span>Back to Home</span>
-          </Link>
+            <span>Go Back</span>
+          </button>
         </div>
       </header>
 

@@ -8,6 +8,7 @@ import AcademicsSection from '@/components/AcademicsSection';
 import ExtracurricularsSection from '@/components/ExtracurricularsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import BackToTop from '@/components/BackToTop';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const Index = () => {
@@ -36,6 +37,7 @@ const Index = () => {
           <ContactSection />
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </div>
   );
