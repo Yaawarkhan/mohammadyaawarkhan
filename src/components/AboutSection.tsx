@@ -3,25 +3,38 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import profileImage from '@/assets/profile.png';
 import { 
-  Code, 
   FileHtml, 
   FileCss, 
   FileJs, 
   Atom, 
-  Brain
+  Brain,
+  Database
 } from 'phosphor-react';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Custom Python icon component
+const PythonIcon = ({ size = 28, className = '' }: { size?: number; className?: string }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 256 256" 
+    className={className}
+    fill="currentColor"
+  >
+    <path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-82.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32l-24-24a8,8,0,0,1,0-11.32l24-24a8,8,0,0,1,11.32,11.32Zm-37.32-24a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L103.37,152,85.02,133.66a8,8,0,0,1,11.32-11.32Z"/>
+  </svg>
+);
 
 const skills = [
   { icon: FileHtml, name: 'HTML5' },
   { icon: FileCss, name: 'CSS3' },
   { icon: FileJs, name: 'JavaScript' },
   { icon: Atom, name: 'React' },
-  { icon: Code, name: 'MySQL' },
+  { icon: Database, name: 'MySQL' },
   { icon: Brain, name: 'AI/ML' },
-  { icon: Code, name: 'TypeScript' },
-  { icon: Code, name: 'Python' },
+  { icon: FileJs, name: 'TypeScript' },
+  { icon: PythonIcon, name: 'Python', isCustom: true },
 ];
 
 const AboutSection = () => {
@@ -133,13 +146,20 @@ const AboutSection = () => {
 
             {/* Skills Grid */}
             <div ref={skillsRef} className="grid grid-cols-4 gap-4">
-              {skills.map(({ icon: Icon, name }) => (
+              {skills.map(({ icon: Icon, name, isCustom }) => (
                 <div key={name} className="skill-icon group" title={name}>
-                  <Icon 
-                    size={28} 
-                    weight="light" 
-                    className="text-muted-foreground group-hover:text-primary transition-colors" 
-                  />
+                  {isCustom ? (
+                    <Icon 
+                      size={28} 
+                      className="text-muted-foreground group-hover:text-primary transition-colors" 
+                    />
+                  ) : (
+                    <Icon 
+                      size={28} 
+                      weight="light" 
+                      className="text-muted-foreground group-hover:text-primary transition-colors" 
+                    />
+                  )}
                 </div>
               ))}
             </div>

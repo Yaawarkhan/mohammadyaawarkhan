@@ -86,24 +86,15 @@ const ProjectsSection = () => {
               to={`/project/${project.id}`}
               className="project-card group cursor-pointer block"
             >
-              {/* Image */}
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                
-                {/* Arrow icon */}
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                  <ArrowUpRight size={20} weight="bold" className="text-primary" />
-                </div>
-
-                {/* Category badge */}
-                <div className="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  {project.category}
+              {/* Header with category badge */}
+              <div className="relative p-4 bg-secondary/30 border-b border-border/30">
+                <div className="flex items-center justify-between">
+                  <div className="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-medium">
+                    {project.category}
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <ArrowUpRight size={16} weight="bold" className="text-primary" />
+                  </div>
                 </div>
               </div>
 

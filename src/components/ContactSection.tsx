@@ -81,9 +81,11 @@ const ContactSection = () => {
         'template_y9gzmue',
         {
           from_name: formData.name,
+          reply_to: formData.email,
           from_email: formData.email,
+          to_name: 'Mohammad Yaawar Khan',
           subject: formData.subject,
-          message: formData.message,
+          message: `From: ${formData.name} (${formData.email})\n\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`,
         },
         'WUT3ff-c5j-YAeugy'
       );
