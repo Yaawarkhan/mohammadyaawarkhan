@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Heart } from 'phosphor-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,14 +42,6 @@ const Footer = () => {
     return () => ctx.revert();
   }, []);
 
-  const currentYear = new Date().getFullYear();
-
-  const handleLinkClick = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <footer ref={footerRef} className="relative py-16 border-t border-border/30 overflow-hidden">
@@ -64,30 +55,10 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <div className="text-2xl font-bold tracking-tight">
-            <span className="text-primary">M</span>YK
-          </div>
-
-          {/* Nav Links */}
-          <nav className="flex flex-wrap justify-center gap-8">
-            {['Home', 'About', 'Projects', 'Contact'].map((link) => (
-              <button
-                key={link}
-                onClick={() => handleLinkClick(`#${link.toLowerCase()}`)}
-                className="text-muted-foreground text-sm font-light hover:text-primary transition-colors"
-              >
-                {link}
-              </button>
-            ))}
-          </nav>
-
+        <div className="flex items-center justify-center">
           {/* Copyright */}
-          <div className="flex items-center gap-2 text-muted-foreground text-sm font-light">
-            <span>© {currentYear} Made with</span>
-            <Heart size={16} weight="fill" className="text-primary animate-pulse" />
-            <span>by Mohammad Yaawar Khan</span>
+          <div className="text-muted-foreground text-sm font-light">
+            © 2026 Mohammad Yaawar Khan
           </div>
         </div>
       </div>
