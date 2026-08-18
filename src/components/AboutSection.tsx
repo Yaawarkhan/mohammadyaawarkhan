@@ -62,22 +62,6 @@ const AboutSection = () => {
     const content = contentRef.current;
     const skillsContainer = skillsRef.current;
 
-    // Section fade in with blur
-    gsap.fromTo(
-      section,
-      { opacity: 0.5 },
-      {
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'top 20%',
-          scrub: true,
-        },
-      }
-    );
-
     // Image entrance from right
     gsap.fromTo(
       image,
@@ -99,11 +83,10 @@ const AboutSection = () => {
     // Content entrance
     gsap.fromTo(
       content,
-      { opacity: 0, y: 50, filter: 'blur(5px)' },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        filter: 'blur(0px)',
         duration: 1,
         ease: 'power2.out',
         scrollTrigger: {
@@ -141,7 +124,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-32 overflow-hidden">
+    <section ref={sectionRef} id="about" className="relative py-24 overflow-hidden">
       {/* Background orbs */}
       <div className="glow-orb w-[500px] h-[500px] top-0 right-0 opacity-10" />
 

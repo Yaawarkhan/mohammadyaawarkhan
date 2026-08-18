@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import Preloader from '@/components/Preloader';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -11,19 +12,59 @@ import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
+const PRELOADER_KEY = 'myk-preloader-shown';
+const SCROLL_KEY = 'myk-home-scroll';
+
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  // Preloader only on a fresh load / hard refresh, not on in-app back navigation
+  const [hasSeenPreloader] = useState(
+    () => typeof window !== 'undefined' && sessionStorage.getItem(PRELOADER_KEY) === '1'
+  );
+  const [isLoading, setIsLoading] = useState(!hasSeenPreloader);
+  const location = useLocation();
+  const restoredRef = useRef(false);
 
   useSmoothScroll();
 
   const handlePreloaderComplete = useCallback(() => {
+    sessionStorage.setItem(PRELOADER_KEY, '1');
     setIsLoading(false);
   }, []);
 
+  // Persist scroll position so returning to the home page feels instant
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const saveScroll = () => {
+      sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+    };
+
+    window.addEventListener('scroll', saveScroll, { passive: true });
+    window.addEventListener('beforeunload', saveScroll);
+    return () => {
+      saveScroll();
+      window.removeEventListener('scroll', saveScroll);
+      window.removeEventListener('beforeunload', saveScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (restoredRef.current || isLoading) return;
+    restoredRef.current = true;
+
+    if (hasSeenPreloader) {
+      const saved = Number(sessionStorage.getItem(SCROLL_KEY) || 0);
+      if (saved > 0) {
+        requestAnimationFrame(() => window.scrollTo(0, saved));
+      }
+    }
+  }, [isLoading, hasSeenPreloader, location.key]);
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Preloader */}
-      <Preloader onComplete={handlePreloaderComplete} />
+      {!hasSeenPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
       {/* Main Content */}
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
