@@ -16,6 +16,8 @@ import tutoring3 from '@/assets/tutoring-3.png';
 import paperSocial from '@/assets/paper-social.png';
 import paperRetail from '@/assets/paper-retail.png';
 import paperKmeans from '@/assets/paper-kmeans.png';
+import osintEye from '@/assets/osint-eye.jpg';
+import hifazatAi from '@/assets/hifazat-ai.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,6 +53,38 @@ export const projectsData: ProjectData[] = [
     link: 'https://aicademia.lovable.app/',
     linkText: 'Visit Aicademia',
     gallery: [aicademia1, aicademia2, aicademia3]
+  },
+  {
+    id: 'hifazat-ai',
+    image: hifazatAi,
+    title: 'Hifazat AI',
+    subtitle: 'AI-Powered CCTV Security System',
+    description: 'Hackathon-winning smart surveillance system with facial recognition and voice features',
+    fullDescription: [
+      "Hifazat AI is an AI-powered CCTV system built to turn ordinary security cameras into an intelligent safety layer, and it went on to win a hackathon.",
+      "The system performs real-time facial recognition, identifying known individuals and flagging unrecognised faces instantly so that security teams get alerts the moment something looks off.",
+      "It also includes voice features — voice-based alerts and interaction — so the system can communicate warnings rather than relying solely on a screen someone has to be watching.",
+      "Beyond recognition, the project explored activity monitoring, event logging, and instant notifications, making surveillance proactive rather than something you only review after an incident.",
+      "Building Hifazat AI under hackathon time pressure taught me rapid prototyping, computer vision pipelines, and how to present a technical product convincingly to judges."
+    ],
+    tech: ['Python', 'Computer Vision', 'Facial Recognition', 'AI/ML', 'Voice AI'],
+    category: 'AI Project'
+  },
+  {
+    id: 'osint-eye',
+    image: osintEye,
+    title: 'OSINT Eye',
+    subtitle: 'Unified Open-Source Intelligence Toolkit',
+    description: 'An OSINT tool combining multiple investigation utilities into one workflow',
+    fullDescription: [
+      "OSINT Eye is an open-source intelligence tool that brings together several existing OSINT utilities under a single, unified workflow for online investigations.",
+      "Instead of jumping between a dozen scattered scripts and websites, the tool lets an investigator run lookups from one place and see the results side by side.",
+      "It covers common investigative needs such as username and profile discovery across platforms, domain and IP reconnaissance, metadata inspection, and correlation of publicly available data points.",
+      "The goal was to reduce the friction in early-stage research — collecting only publicly accessible information, responsibly and ethically, for legitimate research and security purposes.",
+      "Building it deepened my understanding of APIs, automation, data correlation, and the ethics of digital investigation."
+    ],
+    tech: ['Python', 'OSINT', 'Automation', 'APIs', 'Cybersecurity'],
+    category: 'Cybersecurity'
   },
   {
     id: 'ai-workshop',
