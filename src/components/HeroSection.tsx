@@ -123,7 +123,7 @@ const HeroSection = () => {
       <div className="hero-orb-3 glow-orb w-[300px] h-[300px] bottom-32 right-1/4 opacity-30" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center py-24 lg:py-20">
           {/* Left - Content */}
           <div className="order-2 lg:order-1">
             <h1
