@@ -143,19 +143,24 @@ const AboutSection = () => {
             {/* Skills Grid */}
             <div ref={skillsRef} className="grid grid-cols-4 gap-4">
               {skills.map(({ icon: Icon, name, isCustom }) => (
-                <div key={name} className="skill-icon group" title={name}>
-                  {isCustom ? (
-                    <Icon 
-                      size={28} 
-                      className="text-muted-foreground group-hover:text-primary transition-colors" 
-                    />
-                  ) : (
-                    <Icon 
-                      size={28} 
-                      weight="light" 
-                      className="text-muted-foreground group-hover:text-primary transition-colors" 
-                    />
-                  )}
+                <div key={name} className="flex flex-col items-center gap-2">
+                  <div className="skill-icon group" title={name}>
+                    {isCustom ? (
+                      <Icon
+                        size={28}
+                        className="text-muted-foreground group-hover:text-primary transition-colors"
+                      />
+                    ) : (
+                      <Icon
+                        size={28}
+                        weight="light"
+                        className="text-muted-foreground group-hover:text-primary transition-colors"
+                      />
+                    )}
+                  </div>
+                  <span className="text-xs font-light tracking-wide text-muted-foreground text-center">
+                    {name}
+                  </span>
                 </div>
               ))}
             </div>
@@ -167,17 +172,18 @@ const AboutSection = () => {
               {/* Glow effect behind frame */}
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/40 via-primary/20 to-transparent rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
               <div className="absolute -inset-2 bg-gradient-to-tr from-primary/30 to-transparent rounded-2xl blur-xl opacity-40" />
-              
+
               {/* Image frame */}
-              <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden border border-primary/20 shadow-[0_0_40px_hsl(var(--primary)/0.2)]">
+              <div className="relative w-80 h-[26rem] md:w-96 md:h-[32rem] rounded-2xl overflow-hidden border border-primary/20 shadow-[0_0_40px_hsl(var(--primary)/0.2)]">
                 <img
                   src={profileImage}
                   alt="Mohammad Yaawar Khan"
-                  className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
