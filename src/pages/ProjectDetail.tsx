@@ -18,6 +18,7 @@ import paperRetail from '@/assets/paper-retail.png';
 import paperKmeans from '@/assets/paper-kmeans.png';
 import osintEye from '@/assets/osint-eye.jpg';
 import hifazatAi from '@/assets/hifazat-ai.jpg';
+import startupBook from '@/assets/startup-book.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,6 +54,22 @@ export const projectsData: ProjectData[] = [
     link: 'https://aicademia.lovable.app/',
     linkText: 'Visit Aicademia',
     gallery: [aicademia1, aicademia2, aicademia3]
+  },
+  {
+    id: 'startup-book',
+    image: startupBook,
+    title: 'Startups: Everything You Need To Know',
+    subtitle: 'A Book In Progress',
+    description: 'A book I am writing that breaks down everything you need to know about startups',
+    fullDescription: [
+      "I'm currently writing a book that covers everything you need to know about startups \u2014 from the very first idea to building, launching, and growing a real company.",
+      "The book draws directly from my own journey as a student founder: running a tutoring venture, building Aicademia, getting incubated, pitching, failing, iterating, and learning what actually moves a startup forward versus what only looks productive.",
+      "It walks through idea validation, understanding your users, building an MVP, branding and marketing, sales, team building, fundraising basics, and the mindset required to keep going when things stall.",
+      "My aim is to write the guide I wish I had when I started \u2014 practical, honest, and written in plain language for students and first-time founders rather than in corporate jargon.",
+      "The book is a work in progress, and I'm writing it alongside my studies and projects."
+    ],
+    tech: ['Writing', 'Entrepreneurship', 'Startups', 'Research'],
+    category: 'Book'
   },
   {
     id: 'hifazat-ai',
