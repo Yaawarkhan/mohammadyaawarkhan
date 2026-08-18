@@ -15,7 +15,8 @@ export const useSmoothScroll = () => {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
-      lerp: 0.12,
+      lerp: 0.09,
+      syncTouch: false,
     });
 
     // Connect Lenis to GSAP ScrollTrigger

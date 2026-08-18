@@ -200,6 +200,12 @@
     will-change: transform;
     transform: translateZ(0);
     contain: paint;
+    animation: orb-float 14s ease-in-out infinite;
+  }
+
+  @keyframes orb-float {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(0, -18px, 0) scale(1.04); }
   }
 
   /* Profile image glow */
@@ -244,13 +250,13 @@
   .skill-icon {
     @apply flex items-center justify-center w-14 h-14 rounded-xl bg-secondary/50 border border-border/30;
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   }
 
   .skill-icon:hover {
     @apply border-primary/50;
     box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.06);
   }
 
   /* Nav link */
@@ -274,7 +280,8 @@
   /* Project card */
   .project-card {
     @apply glass-card overflow-hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+    will-change: transform;
   }
 
   .project-card:hover {
@@ -337,5 +344,13 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
