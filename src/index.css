@@ -178,6 +178,9 @@
       transparent 70%
     );
     filter: blur(40px);
+    will-change: transform;
+    transform: translateZ(0);
+    contain: paint;
   }
 
   /* Profile image glow */
