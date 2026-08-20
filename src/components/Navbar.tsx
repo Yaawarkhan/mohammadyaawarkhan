@@ -78,6 +78,8 @@ const Navbar = () => {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Open menu"
+            aria-expanded={isOpen}
             className="md:hidden text-foreground p-2"
           >
             <List size={28} weight="light" />
@@ -88,7 +90,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
         <div className="container mx-auto px-6 py-5 flex justify-end">
-          <button onClick={() => setIsOpen(false)} className="text-foreground p-2">
+          <button onClick={() => setIsOpen(false)} aria-label="Close menu" className="text-foreground p-2">
             <X size={28} weight="light" />
           </button>
         </div>
