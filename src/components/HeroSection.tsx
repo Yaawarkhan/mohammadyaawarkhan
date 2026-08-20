@@ -134,6 +134,9 @@ const HeroSection = () => {
               <span className="text-primary text-glow">Mohammad</span>
               <br />
               <span className="text-foreground/90">Yaawar Khan</span>
+              <span className="block mt-4 text-lg sm:text-xl md:text-2xl font-light text-muted-foreground">
+                Student, Researcher &amp; Founder
+              </span>
             </h1>
 
             <p

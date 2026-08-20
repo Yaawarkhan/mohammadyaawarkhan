@@ -132,9 +132,9 @@ const AboutSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content - Left side */}
           <div ref={contentRef} className="order-2 lg:order-1">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
               About Me
-            </h3>
+            </h2>
 
             <p className="text-muted-foreground font-light leading-relaxed mb-10">
               I'm a student driven by curiosity and a belief that learning should extend beyond classrooms. Whether through research, building technology, or teaching others, I focus on turning ideas into work that has real-world value. My experiences span independent research, hands-on AI projects, workshops, and running a tutoring initiative aimed at making education more accessible. Growing up in India has shaped my understanding of how impactful the right opportunities can be, and I'm deeply interested in using technology and education to create meaningful, scalable change.

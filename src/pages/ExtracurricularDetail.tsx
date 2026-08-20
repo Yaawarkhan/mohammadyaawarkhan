@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import Seo from '@/components/Seo';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
@@ -254,6 +255,19 @@ const ExtracurricularDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`${extracurricular.title} | Mohammad Yaawar Khan`}
+        description={extracurricular.description}
+        path={`/extracurricular/${extracurricular.id}`}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: extracurricular.title,
+          description: extracurricular.description,
+          url: `https://mohammadyaawarkhan.lovable.app/extracurricular/${extracurricular.id}`,
+          author: { '@type': 'Person', name: 'Mohammad Yaawar Khan' },
+        }}
+      />
       {/* Background effects */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="glow-orb w-[600px] h-[600px] top-0 right-0 opacity-10" />
