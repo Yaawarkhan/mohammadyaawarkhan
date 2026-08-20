@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import Seo from '@/components/Seo';
 import { ArrowLeft, ArrowUpRight } from 'phosphor-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
@@ -241,6 +242,21 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`${project.title} — ${project.subtitle} | Mohammad Yaawar Khan`}
+        description={project.description}
+        path={`/project/${project.id}`}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: project.title,
+          headline: project.title,
+          description: project.description,
+          about: project.category,
+          url: `https://mohammadyaawarkhan.lovable.app/project/${project.id}`,
+          author: { '@type': 'Person', name: 'Mohammad Yaawar Khan' },
+        }}
+      />
       {/* Background orbs */}
       <div className="glow-orb w-[500px] h-[500px] top-0 -left-64 opacity-20" />
       <div className="glow-orb w-[400px] h-[400px] bottom-1/4 -right-48 opacity-15" />

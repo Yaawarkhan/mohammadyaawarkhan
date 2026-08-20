@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import Seo from '@/components/Seo';
 import Preloader from '@/components/Preloader';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -64,6 +65,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <Seo
+        title="Mohammad Yaawar Khan — Student Founder, AI & Research Portfolio"
+        description="Portfolio of Mohammad Yaawar Khan: AI projects, startup ventures, independent research, and education initiatives by a student founder from India."
+        path="/"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Mohammad Yaawar Khan',
+          jobTitle: 'Student Founder',
+          url: 'https://mohammadyaawarkhan.lovable.app/',
+          sameAs: ['https://instagram.com/yaawar_khan'],
+        }}
+      />
       {!hasSeenPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
       {/* Main Content */}
