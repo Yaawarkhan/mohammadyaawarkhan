@@ -198,14 +198,17 @@ const HeroSection = () => {
             </div>
             {/* Spline iframe with watermark covered */}
             <div className="relative z-10 w-full h-full">
-              <iframe
-                src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
-                frameBorder="0"
-                width="100%"
-                height="100%"
-                className="rounded-2xl pointer-events-auto"
-                title="3D Robot Character"
-              />
+              {splineVisible && (
+                <iframe
+                  src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
+                  frameBorder="0"
+                  width="100%"
+                  height="100%"
+                  className="rounded-2xl pointer-events-auto"
+                  title="3D Robot Character"
+                />
+              )}
+
               {/* Solid cover for Spline watermark */}
               <div className="absolute bottom-0 left-0 right-0 h-14 bg-background pointer-events-none" />
             </div>
