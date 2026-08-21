@@ -5,21 +5,21 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import aicademia1 from '@/assets/aicademia-1.jpeg';
-import aicademia2 from '@/assets/aicademia-2.jpeg';
-import aicademia3 from '@/assets/aicademia-3.jpeg';
-import thinkai1 from '@/assets/thinkai-1.jpeg';
-import thinkai2 from '@/assets/thinkai-2.jpeg';
-import thinkai3 from '@/assets/thinkai-3.jpeg';
-import tutoring1 from '@/assets/tutoring-1.jpeg';
-import tutoring2 from '@/assets/tutoring-2.jpeg';
-import tutoring3 from '@/assets/tutoring-3.png';
-import paperSocial from '@/assets/paper-social.png';
-import paperRetail from '@/assets/paper-retail.png';
-import paperKmeans from '@/assets/paper-kmeans.png';
-import osintEye from '@/assets/osint-eye.jpg';
-import hifazatAi from '@/assets/hifazat-ai.jpg';
-import startupBook from '@/assets/startup-book.jpg';
+import aicademia1 from '@/assets/aicademia-1.webp';
+import aicademia2 from '@/assets/aicademia-2.webp';
+import aicademia3 from '@/assets/aicademia-3.webp';
+import thinkai1 from '@/assets/thinkai-1.webp';
+import thinkai2 from '@/assets/thinkai-2.webp';
+import thinkai3 from '@/assets/thinkai-3.webp';
+import tutoring1 from '@/assets/tutoring-1.webp';
+import tutoring2 from '@/assets/tutoring-2.webp';
+import tutoring3 from '@/assets/tutoring-3.webp';
+import paperSocial from '@/assets/paper-social.webp';
+import paperRetail from '@/assets/paper-retail.webp';
+import paperKmeans from '@/assets/paper-kmeans.webp';
+import osintEye from '@/assets/osint-eye.webp';
+import hifazatAi from '@/assets/hifazat-ai.webp';
+import startupBook from '@/assets/startup-book.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -301,6 +301,8 @@ const ProjectDetail = () => {
                   <img
                     src={img}
                     alt={`${project.title} - ${index + 1}`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
                     className="w-full h-[300px] md:h-[400px] object-cover object-top"
                   />
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/10 blur-3xl -z-10" />
@@ -313,6 +315,7 @@ const ProjectDetail = () => {
               <img
                 src={project.image}
                 alt={project.title}
+                decoding="async"
                 className="w-full h-[400px] md:h-[500px] object-cover"
               />
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/10 blur-3xl -z-10" />

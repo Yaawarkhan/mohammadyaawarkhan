@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import profileImage from '@/assets/profile.png';
+import profileImage from '@/assets/profile.webp';
 import { 
   FileHtml, 
   FileCss, 
@@ -178,6 +178,10 @@ const AboutSection = () => {
                 <img
                   src={profileImage}
                   alt="Mohammad Yaawar Khan"
+                  loading="lazy"
+                  decoding="async"
+                  width={880}
+                  height={1200}
                   className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>

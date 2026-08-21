@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -11,9 +11,48 @@ const HeroSection = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const splineRef = useRef<HTMLDivElement>(null);
   const bgTextRef = useRef<HTMLDivElement>(null);
+  // Only render the WebGL scene while the hero is on screen — a hidden
+  // Spline canvas keeps rendering and makes the rest of the page choppy.
+  const [splineInView, setSplineInView] = useState(true);
+  // And never let its ~2 MB payload compete with the first paint.
+  const [splineReady, setSplineReady] = useState(false);
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 2.8 });
+    const el = splineRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setSplineInView(entry.isIntersecting),
+      { rootMargin: '200px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let idle: number;
+    const start = () => {
+      const ric = (window as typeof window & {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      }).requestIdleCallback;
+      idle = ric
+        ? ric(() => setSplineReady(true), { timeout: 2000 })
+        : window.setTimeout(() => setSplineReady(true), 600);
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => {
+      window.removeEventListener('load', start);
+      clearTimeout(idle);
+    };
+  }, []);
+
+
+
+  const hasSeenPreloader =
+    typeof window !== 'undefined' && sessionStorage.getItem('myk-preloader-shown') === '1';
+
+  useEffect(() => {
+    const tl = gsap.timeline({ delay: hasSeenPreloader ? 0.1 : 1.5 });
 
     // Animate headline
     tl.fromTo(
@@ -183,14 +222,17 @@ const HeroSection = () => {
             </div>
             {/* Spline iframe with watermark covered */}
             <div className="relative z-10 w-full h-full">
-              <iframe
-                src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
-                frameBorder="0"
-                width="100%"
-                height="100%"
-                className="rounded-2xl pointer-events-auto"
-                title="3D Robot Character"
-              />
+              {splineVisible && (
+                <iframe
+                  src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
+                  frameBorder="0"
+                  width="100%"
+                  height="100%"
+                  className="rounded-2xl pointer-events-auto"
+                  title="3D Robot Character"
+                />
+              )}
+
               {/* Solid cover for Spline watermark */}
               <div className="absolute bottom-0 left-0 right-0 h-14 bg-background pointer-events-none" />
             </div>
