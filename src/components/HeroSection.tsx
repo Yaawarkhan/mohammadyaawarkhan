@@ -13,18 +13,39 @@ const HeroSection = () => {
   const bgTextRef = useRef<HTMLDivElement>(null);
   // Only render the WebGL scene while the hero is on screen — a hidden
   // Spline canvas keeps rendering and makes the rest of the page choppy.
-  const [splineVisible, setSplineVisible] = useState(true);
+  const [splineInView, setSplineInView] = useState(true);
+  // And never let its ~2 MB payload compete with the first paint.
+  const [splineReady, setSplineReady] = useState(false);
 
   useEffect(() => {
     const el = splineRef.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([entry]) => setSplineVisible(entry.isIntersecting),
+      ([entry]) => setSplineInView(entry.isIntersecting),
       { rootMargin: '200px' }
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  useEffect(() => {
+    let idle: number;
+    const start = () => {
+      const ric = (window as typeof window & {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      }).requestIdleCallback;
+      idle = ric
+        ? ric(() => setSplineReady(true), { timeout: 2000 })
+        : window.setTimeout(() => setSplineReady(true), 600);
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => {
+      window.removeEventListener('load', start);
+      clearTimeout(idle);
+    };
+  }, []);
+
 
 
   const hasSeenPreloader =
