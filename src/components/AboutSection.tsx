@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import profileImage from '@/assets/profile.png';
+import profileImage from '@/assets/profile.webp';
 import { 
   FileHtml, 
   FileCss, 
