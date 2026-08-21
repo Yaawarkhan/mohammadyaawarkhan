@@ -27,8 +27,11 @@ const HeroSection = () => {
   }, []);
 
 
+  const hasSeenPreloader =
+    typeof window !== 'undefined' && sessionStorage.getItem('myk-preloader-shown') === '1';
+
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 2.8 });
+    const tl = gsap.timeline({ delay: hasSeenPreloader ? 0.1 : 1.5 });
 
     // Animate headline
     tl.fromTo(

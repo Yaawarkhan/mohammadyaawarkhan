@@ -17,14 +17,14 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
     // Animate name fade in
     tl.fromTo(
       nameRef.current,
-      { opacity: 0, y: 20, filter: 'blur(10px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power2.out' }
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
     );
 
     // Animate progress bar
     tl.to(progressRef.current, {
       width: '100%',
-      duration: 2,
+      duration: 1,
       ease: 'power2.inOut',
       onUpdate: function() {
         const progress = Math.round(this.progress() * 100);
@@ -38,8 +38,7 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
     tl.to(preloaderRef.current, {
       opacity: 0,
       scale: 0.95,
-      filter: 'blur(10px)',
-      duration: 0.8,
+      duration: 0.4,
       ease: 'power2.inOut',
       onComplete: () => {
         if (preloaderRef.current) {
