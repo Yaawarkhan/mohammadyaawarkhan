@@ -178,6 +178,10 @@ const AboutSection = () => {
                 <img
                   src={profileImage}
                   alt="Mohammad Yaawar Khan"
+                  loading="lazy"
+                  decoding="async"
+                  width={880}
+                  height={1200}
                   className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>

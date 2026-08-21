@@ -301,6 +301,8 @@ const ProjectDetail = () => {
                   <img
                     src={img}
                     alt={`${project.title} - ${index + 1}`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
                     className="w-full h-[300px] md:h-[400px] object-cover object-top"
                   />
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/10 blur-3xl -z-10" />
@@ -313,6 +315,7 @@ const ProjectDetail = () => {
               <img
                 src={project.image}
                 alt={project.title}
+                decoding="async"
                 className="w-full h-[400px] md:h-[500px] object-cover"
               />
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/10 blur-3xl -z-10" />
