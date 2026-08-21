@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -11,6 +11,21 @@ const HeroSection = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const splineRef = useRef<HTMLDivElement>(null);
   const bgTextRef = useRef<HTMLDivElement>(null);
+  // Only render the WebGL scene while the hero is on screen — a hidden
+  // Spline canvas keeps rendering and makes the rest of the page choppy.
+  const [splineVisible, setSplineVisible] = useState(true);
+
+  useEffect(() => {
+    const el = splineRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setSplineVisible(entry.isIntersecting),
+      { rootMargin: '200px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 2.8 });
