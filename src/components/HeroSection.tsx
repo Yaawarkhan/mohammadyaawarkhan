@@ -222,7 +222,7 @@ const HeroSection = () => {
             </div>
             {/* Spline iframe with watermark covered */}
             <div className="relative z-10 w-full h-full">
-              {splineVisible && (
+              {splineInView && splineReady && (
                 <iframe
                   src="https://my.spline.design/nexbotrobotcharacterconcept-jl6Ig26Gwdpk5XEE7VFmlnng/"
                   frameBorder="0"
